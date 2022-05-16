@@ -33,7 +33,7 @@ public class App {
 
   private static void mostrarDocentes(ArrayList<Titular> titulares, ArrayList<Suplente> suplentes) {
 
-    titulares.toString();
+    //
 
   }
 
