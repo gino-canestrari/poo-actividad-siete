@@ -9,11 +9,13 @@ public class Titular extends Docente {
 
   @Override
   public void calcularPlus() {
-    if (this.edad > 30 && this.antiguedad > 6) {
-      this.salario += this.PLUS_RURALIDAD;
+    if (this.getEdad() > 30 && this.getAntiguedad() > 6) {
+      this.setSalario(this.getSalario() + this.PLUS_RURALIDAD);
     }
   }
   
-  
+  public int getAntiguedad() {
+    return antiguedad;
+  }
 
 }

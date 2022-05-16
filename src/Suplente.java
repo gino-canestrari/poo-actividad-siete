@@ -9,9 +9,13 @@ public class Suplente extends Docente {
 
   @Override
   public void calcularPlus() {
-    if (this.edad < 25 && this.zona.equalsIgnoreCase("Zona A")) {
-      this.salario += this.PLUS_RURALIDAD;
+    if (this.getEdad() < 25 && this.getZona().equalsIgnoreCase("Zona A")) {
+      this.setSalario(this.getSalario() + this.PLUS_RURALIDAD);
     }
+  }
+
+  public String getZona() {
+    return zona;
   }
   
 }

@@ -10,39 +10,57 @@ public class App {
     ArrayList<Titular> titulares = new ArrayList<>();
     ArrayList<Suplente> suplentes = new ArrayList<>();
 
-    mostrarMenu();
-    int opcion = sc.nextInt();
+    int opcion;
+    do {
+      
+      mostrarMenu();
+      opcion = sc.nextInt();
+  
+      switch (opcion) {
+        case 1:
+          titulares.add(obtenerTitular());
+          break;
+        case 2:
+          suplentes.add(obtenerSuplente());
+          break;
+        case 3:
+          mostrarDocentes(titulares, suplentes);
+          break;
+        case 4:
+          titulares.forEach((t) -> t.calcularPlus());
+          suplentes.forEach((s) -> s.calcularPlus());
+          break;
+      }
 
-    switch (opcion) {
-      case 1:
-        ingresarTitular(titulares);
-        break;
-      case 2:
-        ingresarSuplente(suplentes);
-        break;
-      case 3:
-        calcularPlus(titulares, suplentes);
-        break;
-      case 4:
-        mostrarDocentes(titulares, suplentes);
-        break;
-    }
-
+    } while (opcion != 0);
 
   }
 
   private static void mostrarDocentes(ArrayList<Titular> titulares, ArrayList<Suplente> suplentes) {
 
-    //
+    for (Titular t : titulares) {
+      System.out.println("\n---------------------------------");
+      System.out.println("Legajo: " + t.getNumeroLegajo());
+      System.out.println("Nombre: " + t.getNombre());
+      System.out.println("Edad: " + t.getEdad());
+      System.out.println("Salario: " + t.getSalario());
+      System.out.println("Antiguedad: " + t.getAntiguedad());
+      System.out.println("---------------------------------");
+    }
+
+    for (Suplente s : suplentes) {
+      System.out.println("\n---------------------------------");
+      System.out.println("Legajo: " + s.getNumeroLegajo());
+      System.out.println("Nombre: " + s.getNombre());
+      System.out.println("Edad: " + s.getEdad());
+      System.out.println("Salario: " + s.getSalario());
+      System.out.println("Zona: " + s.getZona());
+      System.out.println("---------------------------------");
+    }
 
   }
 
-  private static void calcularPlus(ArrayList<Titular> titulares, ArrayList<Suplente> suplentes) {
-    titulares.forEach((t) -> t.calcularPlus());
-    suplentes.forEach((s) -> s.calcularPlus());
-  }
-
-  private static void ingresarSuplente(ArrayList<Suplente> suplentes) {
+  private static Suplente obtenerSuplente() {
 
     System.out.println("\n-- Ingresar Datos ---------------");
     System.out.print("Legajo: ");
@@ -57,11 +75,11 @@ public class App {
     String zona = sc.next();
     System.out.println("---------------------------------");
 
-    suplentes.add(new Suplente(numeroLegajo, nombre, edad, salario, zona));
+    return new Suplente(numeroLegajo, nombre, edad, salario, zona);
 
   }
 
-  private static void ingresarTitular(ArrayList<Titular> titulares) {
+  private static Titular obtenerTitular() {
 
     System.out.println("\n-- Ingresar Datos ---------------");
     System.out.print("Legajo: ");
@@ -76,7 +94,7 @@ public class App {
     int antiguedad = sc.nextInt();
     System.out.println("---------------------------------");
       
-    titulares.add(new Titular(numeroLegajo, nombre, edad, salario, antiguedad));
+    return new Titular(numeroLegajo, nombre, edad, salario, antiguedad);
 
   }
 
@@ -87,6 +105,7 @@ public class App {
     System.out.println("2) - Agregar Nuevo Suplente");
     System.out.println("3) - Mostrar Docentes");
     System.out.println("4) - Calcular Plus");
+    System.out.println("0) - Salir");
     System.out.println("---------------------------------");
     System.out.print("> ");
 
